@@ -29,8 +29,8 @@ wrangler deploy
 KV Namespace
 KV stores two keys:
 ```
-custom_gpus — List of user-added custom GPUs (JSON array)
-custom_models — List of user-added custom models (JSON array)
+- custom_gpus — List of user-added custom GPUs (JSON array)
+- custom_models — List of user-added custom models (JSON array)
 
 
 ------
