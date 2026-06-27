@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./src:/app/src        # live-reload on src changes
+      - ./wrangler.toml:/app/wrangler.toml
+    environment:
+      # Set CLOUDFLARE_API_TOKEN to run `wrangler deploy` inside the container.
+      # Not required for local dev (--local mode).
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
+    # Override CMD to deploy instead of dev:
+    #   docker compose run --rm app wrangler deploy
