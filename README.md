@@ -78,3 +78,6 @@ KV 儲存兩個 key：
 -----
 
 Welcome to contribute and correct the info !
+Create by Elaspsed Lab
+
+MIT License
