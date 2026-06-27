@@ -1,5 +1,41 @@
-# GPU 回本計算機
+# GPU ROI Calculator
+Calculate the break-even period for "Self-Hosted GPU Inference" vs. "Using External APIs."
 
+## Features
+- GPU Selection: Ranges from RTX 4090 to H100, with built-in reference pricing and TDP , Summary by AI , may have mistake.
+- AI Model Selection: Support for 30+ models (LLaMA, Qwen, DeepSeek, Kimi, GLM, Yi, etc.) , Summary by AI , may have mistake..
+- Custom Profiles: Input and save custom GPU or model names via KV; they will automatically appear in the list for future use.
+- Real-time Benchmarking: Fetch the latest inference speed benchmarks and API pricing via Brave Search.
+- Financial Metrics: Calculate break-even days, total tokens required to break even, and cumulative electricity costs.
+- Data Visualization: Line chart comparing cumulative GPU + electricity costs vs. cumulative equivalent API service fees.
+
+## Calculation Logic
+```
+Daily Tokens = Tokens/sec × 3600 × Daily Usage Hours
+Daily Electricity Cost = TDP(kW) × Usage Hours × Electricity Rate ($/kWh)
+Daily Equivalent API Savings = Daily Tokens × (API Price / 1,000,000)
+Daily Net Savings = Daily API Savings - Daily Electricity Cost
+```
+Break-even Days = GPU Purchase Price / Daily Net Savings
+Note: If the Daily Electricity Cost is greater than or equal to the Daily Equivalent API Savings, the break-even point will never be reached.
+
+## Deployment
+```bash
+# Install wrangler
+npm install -g wrangler
+
+# Deploy
+wrangler deploy
+KV Namespace
+KV stores two keys:
+```
+custom_gpus — List of user-added custom GPUs (JSON array)
+custom_models — List of user-added custom models (JSON array)
+
+
+------
+
+# GPU 回本計算機
 計算「自架 GPU 推論」vs「使用外部 API」的回本時間。
 
 ## 功能
@@ -18,7 +54,6 @@
 每日電費    = TDP(kW) × 使用時數 × 電費($/kWh)
 每日等效省費 = 每日 tokens × (API 價格 / 1,000,000)
 每日淨節省  = 每日省費 - 每日電費
-
 回本天數 = GPU 購買價 / 每日淨節省
 ```
 
@@ -39,3 +74,7 @@ wrangler deploy
 KV 儲存兩個 key：
 - `custom_gpus` — 使用者新增的自訂 GPU 清單（JSON 陣列）
 - `custom_models` — 使用者新增的自訂模型清單（JSON 陣列）
+
+-----
+
+Welcome to contribute and correct the info !
